@@ -10,4 +10,11 @@ module.exports = (app) => {
             console.log("this is dbEmployee: " , dbEmployee)
         })
     });
+
+    app.get("/api/employees/", (req, res) => {
+        db.Employee.findAll({})
+            .then((dbEmployee)=> {
+                res.json(dbEmployee)
+            });
+    });
 }
