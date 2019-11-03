@@ -14,7 +14,9 @@ function showEmployees () {
         person = data;
         for (let i = 0; i < person.length; i++) {
             console.log("this is person:", person)
-            getEmployees.push("<p>" + person[i].first_Name)
+            // getEmployees.push("<tr>" + "<td>" + person[i].first_Name + "</td>" + "</tr>" + "<tr>" + "<td>" + person[i].last_Name + "</td>" + "</tr>")
+            getEmployees.push("<tr>" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
+            person[i].wage + "</td>" + "<td>" + person[i].department + "</td>" + "</tr>" )
         }
         employeeContainer.append(getEmployees)
     })
