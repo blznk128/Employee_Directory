@@ -1,7 +1,8 @@
 let person;
 let getEmployees = [];
 let employeeContainer = $("#here");
-$(document).on("click", "button.delete", deleteArticle);
+$(document).on("click", "button.delete", deleteEmployee);
+$(document).on("click", "button.edit", editEmployee);
 
 $("#addEmployee").on("click", () => {
     event.preventDefault();
@@ -23,7 +24,8 @@ function showEmployees () {
         person = data;
         for (let i = 0; i < person.length; i++) {
             getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
-            person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
+            person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+            "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
             
         }
         employeeContainer.append(getEmployees)
@@ -32,12 +34,24 @@ function showEmployees () {
 };
 showEmployees()
 
-function deleteArticle(){
-      var rowId = $(this).parent("td").parent("tr").attr('id');
-      $(this).closest("tr").remove();
-      $.ajax({
-        method:"DELETE",
-        url:"/api/employees/" + rowId
-      })
-  
+function deleteEmployee(){
+    var rowId = $(this).parent("td").parent("tr").attr('id');
+    $(this).closest("tr").remove();
+    $.ajax({
+       method:"DELETE",
+      url:"/api/employees/" + rowId
+    })
+};
+
+// function editEmployee() {
+//   var rowEdit = $(this).parent("td").parent("tr").attr('id');
+//     window.location.href = "/addEmployee?employee_id=" + rowEdit.id
+//     console.log(rowEdit.id)
+// }
+function editEmployee() {
+  var currentPost = $(this)
+    .parent()
+    .parent()
+    .attr("id");
+  window.location.href = "/addEmployee?employee_id=" + currentPost;
 }
