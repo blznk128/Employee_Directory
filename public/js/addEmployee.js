@@ -1,10 +1,10 @@
 $(document).ready(() => {
     var url = window.location.search;
-  var postId;
+  var employeeId;
   var updating = false;
   if (url.indexOf("?employee_id=") !== -1) {
-    postId = url.split("=")[1];
-    getPostData(postId);
+    employeeId = url.split("=")[1];
+    getEmployeeInfo(employeeId);
   };
 
     $("#main").on("click", () => {
@@ -16,16 +16,6 @@ $(document).ready(() => {
     let wage = $("#wage");
     let department = $("#department");
 
-    // $("#submit").on("click",() => {
-    //     event.preventDefault();
-    //     let newEmployee = {
-    //         first_Name: firstName.val(),
-    //         last_Name: lastName.val(),
-    //         wage: wage.val(),
-    //         department: department.val()
-    //     };
-    //     addEmployee(newEmployee)
-    // });
     $("#submit").on("click",() => {
         event.preventDefault();
         let newEmployee = {
@@ -35,8 +25,8 @@ $(document).ready(() => {
             department: department.val()
         };
         if (updating) {
-            newEmployee.id = postId;
-            updatePost(newEmployee);
+            newEmployee.id = employeeId;
+            updateEmployee(newEmployee);
           }
           else {
             addEmployee(newEmployee);
@@ -49,7 +39,7 @@ $(document).ready(() => {
     })
 };
 
-function getPostData(id) {
+function getEmployeeInfo(id) {
     $.get("/api/employees/" + id, function(data) {
       if (data) {
         firstName.val(data.first_Name);
@@ -61,11 +51,11 @@ function getPostData(id) {
     });
   }
 
-  function updatePost(post) {
+  function updateEmployee(employeeInformation) {
     $.ajax({
       method: "PUT",
       url: "/api/employees",
-      data: post
+      data: employeeInformation
     })
       .then(function() {
         console.log("success");
