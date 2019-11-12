@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/employeeDirectory.css">
     <title>Employees</title>
 </head>
 <body>
@@ -23,6 +24,12 @@
         </tbody>
       </table>
     <div class = "center-align"><a id = addEmployee class="light-blue btn-small">Add Employee</a></div>
+    <a class='dropdown-trigger blue btn' href='#' data-target='dropdown1'>Sort by</a>
+    <ul id='dropdown1' class='dropdown-content'>
+      <li><a id = lastName href="#!">Last Name</a></li>
+      <li><a id = wage href="#!">Wage</a></li>
+      <li><a id = department href="#!">Department</a></li>
+    </ul>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

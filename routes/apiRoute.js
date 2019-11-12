@@ -29,6 +29,27 @@ module.exports = (app) => {
         });
     });
 
+    app.get("/api/lastName", function(req, res) {
+      db.Employee.findAll({ order: [['last_Name', 'ASC']]})
+        .then(function(dbEmployee) {
+          res.json(dbEmployee);
+        });
+    });
+
+    app.get("/api/wage", function(req, res) {
+      db.Employee.findAll({ order: [['wage', 'ASC']]})
+        .then(function(dbEmployee) {
+          res.json(dbEmployee);
+        });
+    });
+
+    app.get("/api/department", function(req, res) {
+      db.Employee.findAll({ order: [['department', 'ASC']]})
+        .then(function(dbEmployee) {
+          res.json(dbEmployee);
+        });
+    });
+
     app.delete("/api/employees/:id", function(req, res) {
         db.Employee.destroy({
           where: {

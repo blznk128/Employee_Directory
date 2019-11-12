@@ -1,7 +1,7 @@
 $(document).ready(() => {
-    var url = window.location.search;
-  var employeeId;
-  var updating = false;
+  let url = window.location.search;
+  let employeeId;
+  let updating = false;
   if (url.indexOf("?employee_id=") !== -1) {
     employeeId = url.split("=")[1];
     getEmployeeInfo(employeeId);
@@ -31,7 +31,6 @@ $(document).ready(() => {
           else {
             addEmployee(newEmployee);
           }
-        
     });
 
     function addEmployee(employee) {
@@ -61,11 +60,4 @@ function getEmployeeInfo(id) {
         console.log("success");
       });
   }
-
-
-
-
-
-
-
 })
