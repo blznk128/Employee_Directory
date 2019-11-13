@@ -1,6 +1,7 @@
 let person;
 let getEmployees = [];
 let employeeContainer = $("#here");
+let lookUp = $("#lookUp")
 $(document).on("click", "button.delete", deleteEmployee);
 $(document).on("click", "button.edit", editEmployee);
 
@@ -98,6 +99,16 @@ function editEmployee() {
 }
 
 $('.dropdown-trigger').dropdown();
+
+$("#search").on("click", () => {
+  var searchedCharacter = lookUp.val()
+  $.get("/api/last_Name/" + searchedCharacter, function(data) {
+    console.log("this is data: " , data[0].wage);
+    
+  });
+  console.log("search")
+  console.log(searchedCharacter)
+})
 
 $("#lastName").on("click", function() {
   event.preventDefault();
