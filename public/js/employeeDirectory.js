@@ -103,11 +103,12 @@ $('.dropdown-trigger').dropdown();
 $("#search").on("click", () => {
   var searchedCharacter = lookUp.val()
   $.get("/api/last_Name/" + searchedCharacter, function(data) {
-    console.log("this is data: " , data[0].wage);
+    for (let i = 0; i < data.length; i++) {
+      console.log("this is data: " , data[i].first_Name + " " + data[i].last_Name);
+    }
+    
     
   });
-  console.log("search")
-  console.log(searchedCharacter)
 })
 
 $("#lastName").on("click", function() {
