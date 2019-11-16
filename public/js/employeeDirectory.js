@@ -143,20 +143,36 @@ $("#lookUp").keyup(function() {
   getEmployees = []
   $.get("/api/last_Name/" + searchedEmployee, function(foundEmployee) {
     for (let i = 0; i < foundEmployee.length; i++) {
-      if(searchedEmployee === foundEmployee[i].last_Name) {
-        employeeContainer.empty()
-        getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
+      employeeContainer.empty()
+      getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
       foundEmployee[i].wage + "</td>" + "<td>" + foundEmployee[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
       "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
-      } 
-      employeeContainer.append(getEmployees)
+      console.log("this is search by last name: " , foundEmployee[i].first_Name + " " + foundEmployee[i].last_Name);
     }
+      employeeContainer.append(getEmployees)
   });
 })
+
+// $("#lookUp").keyup(function() {
+//   let searchedEmployee = lookUp.val()
+//   getEmployees = []
+//   $.get("/api/last_Name/" + searchedEmployee, function(foundEmployee) {
+//     for (let i = 0; i < foundEmployee.length; i++) {
+//       if(searchedEmployee.match(foundEmployee[i].last_Name)) {
+//         employeeContainer.empty()
+//         getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
+//       foundEmployee[i].wage + "</td>" + "<td>" + foundEmployee[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+//       "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
+//       } 
+//       employeeContainer.append(getEmployees)
+//     }
+//   });
+// })
 
 $("#lookUp").keyup(function() {
   if (lookUp.val() === "") {
     getEmployees = []
+    employeeContainer.empty()
     showEmployees()
   }
 })
