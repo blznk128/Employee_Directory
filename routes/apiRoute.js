@@ -29,17 +29,6 @@ module.exports = (app) => {
         });
     });
 
-    app.get("/api/characters/:character", function(req, res) {
-      var chosen = req.params.character;
-      for (var i = 0; i < characters.length; i++) {
-        if (chosen === characters[i].routeName) {
-          return res.json(characters[i]);
-        }
-      }
-    
-      return res.json(false);
-    });
-
     app.get("/api/last_Name/:last_Name", function(req, res) {
       db.Employee.findAll({
         where: {

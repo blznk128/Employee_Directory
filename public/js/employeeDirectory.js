@@ -1,7 +1,8 @@
 let person;
 let getEmployees = [];
 let employeeContainer = $("#here");
-let lookUp = $("#lookUp")
+let lookUp = $("#lookUp");
+
 $(document).on("click", "button.delete", deleteEmployee);
 $(document).on("click", "button.edit", editEmployee);
 
@@ -81,8 +82,9 @@ function employeeDepartment () {
   })
 };
 
+//delete a employee
 function deleteEmployee(){
-    var rowId = $(this).parent("td").parent("tr").attr('id');
+    let rowId = $(this).parent("td").parent("tr").attr('id');
     $(this).closest("tr").remove();
     $.ajax({
        method:"DELETE",
@@ -90,41 +92,102 @@ function deleteEmployee(){
     })
 };
 
+//edit a employee
 function editEmployee() {
-  var currentPost = $(this)
+  let currentPost = $(this)
     .parent()
     .parent()
     .attr("id");
   window.location.href = "/addEmployee?employee_id=" + currentPost;
 }
 
+//code for drop down menu to sort data
 $('.dropdown-trigger').dropdown();
 
-$("#search").on("click", () => {
-  var searchedCharacter = lookUp.val()
-  $.get("/api/last_Name/" + searchedCharacter, function(data) {
-    for (let i = 0; i < data.length; i++) {
-      console.log("this is data: " , data[i].first_Name + " " + data[i].last_Name);
+//search function
+// $("#search").on("click", () => {
+//   event.preventDefault();
+//   let searchedEmployee = lookUp.val()
+//   employeeContainer.empty()
+//   getEmployees = []
+//   $.get("/api/last_Name/" + searchedEmployee, function(foundEmployee) {
+//     for (let i = 0; i < foundEmployee.length; i++) {
+//       getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
+//       foundEmployee[i].wage + "</td>" + "<td>" + foundEmployee[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+//       "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
+//       console.log("this is search by last name: " , foundEmployee[i].first_Name + " " + foundEmployee[i].last_Name);
+//     }
+//     employeeContainer.append(getEmployees)
+    
+//   });
+// })
+
+function searchEmployee() {
+  let searchedEmployee = lookUp.val()
+  employeeContainer.empty()
+  getEmployees = []
+  $.get("/api/last_Name/" + searchedEmployee, function(foundEmployee) {
+    for (let i = 0; i < foundEmployee.length; i++) {
+      getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
+      foundEmployee[i].wage + "</td>" + "<td>" + foundEmployee[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+      "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
+      console.log("this is search by last name: " , foundEmployee[i].first_Name + " " + foundEmployee[i].last_Name);
     }
+    employeeContainer.append(getEmployees)
     
-    
+  });
+}
+
+$("#lookUp").keyup(function() {
+  let searchedEmployee = lookUp.val()
+  getEmployees = []
+  $.get("/api/last_Name/" + searchedEmployee, function(foundEmployee) {
+    for (let i = 0; i < foundEmployee.length; i++) {
+      if(searchedEmployee === foundEmployee[i].last_Name) {
+        employeeContainer.empty()
+        getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
+      foundEmployee[i].wage + "</td>" + "<td>" + foundEmployee[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+      "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
+      } 
+      employeeContainer.append(getEmployees)
+    }
   });
 })
 
+$("#lookUp").keyup(function() {
+  if (lookUp.val() === "") {
+    getEmployees = []
+    showEmployees()
+  }
+})
+
+$("#search").on("click", () => {
+  if (lookUp.val() === "") {
+    employeeContainer.empty();
+    employeeContainer.append("type something foo")
+  } else {
+    searchEmployee()
+  }
+})
+
+// $("#lookUp").keyup(function() {
+//   if (lookUp.val() === "borunda") {
+//     console.log("hi")
+//   }
+// })
+
+// sort by functions
 $("#lastName").on("click", function() {
   event.preventDefault();
   employeeLastName();
-  console.log("lastName")
 })
 
 $("#wage").on("click", function() {
   event.preventDefault();
   employeeWage();
-  console.log("wage")
 })
 
 $("#department").on("click", function() {
   event.preventDefault();
   employeeDepartment();
-  console.log("department")
 })
