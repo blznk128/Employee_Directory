@@ -104,23 +104,6 @@ function editEmployee() {
 //code for drop down menu to sort data
 $('.dropdown-trigger').dropdown();
 
-//search function
-// $("#search").on("click", () => {
-//   event.preventDefault();
-//   let searchedEmployee = lookUp.val()
-//   employeeContainer.empty()
-//   getEmployees = []
-//   $.get("/api/last_Name/" + searchedEmployee, function(foundEmployee) {
-//     for (let i = 0; i < foundEmployee.length; i++) {
-//       getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
-//       foundEmployee[i].wage + "</td>" + "<td>" + foundEmployee[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
-//       "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
-//       console.log("this is search by last name: " , foundEmployee[i].first_Name + " " + foundEmployee[i].last_Name);
-//     }
-//     employeeContainer.append(getEmployees)
-    
-//   });
-// })
 
 function searchEmployee() {
   let searchedEmployee = lookUp.val()
@@ -153,21 +136,6 @@ $("#lookUp").keyup(function() {
   });
 })
 
-// $("#lookUp").keyup(function() {
-//   let searchedEmployee = lookUp.val()
-//   getEmployees = []
-//   $.get("/api/last_Name/" + searchedEmployee, function(foundEmployee) {
-//     for (let i = 0; i < foundEmployee.length; i++) {
-//       if(searchedEmployee.match(foundEmployee[i].last_Name)) {
-//         employeeContainer.empty()
-//         getEmployees.push("<tr id = " + foundEmployee[i].id + ">" + "<td>" + foundEmployee[i].first_Name + "</td>" + "<td>" + foundEmployee[i].last_Name + "</td>" + "<td>" + 
-//       foundEmployee[i].wage + "</td>" + "<td>" + foundEmployee[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
-//       "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
-//       } 
-//       employeeContainer.append(getEmployees)
-//     }
-//   });
-// })
 
 $("#lookUp").keyup(function() {
   if (lookUp.val() === "") {
@@ -185,12 +153,6 @@ $("#search").on("click", () => {
     searchEmployee()
   }
 })
-
-// $("#lookUp").keyup(function() {
-//   if (lookUp.val() === "borunda") {
-//     console.log("hi")
-//   }
-// })
 
 // sort by functions
 $("#lastName").on("click", function() {

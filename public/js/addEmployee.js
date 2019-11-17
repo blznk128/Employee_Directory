@@ -2,10 +2,12 @@ $(document).ready(() => {
   let url = window.location.search;
   let employeeId;
   let updating = false;
+  $("#loader").hide()
   if (url.indexOf("?employee_id=") !== -1) {
     employeeId = url.split("=")[1];
     getEmployeeInfo(employeeId);
   };
+
 
     $("#main").on("click", () => {
         event.preventDefault();
@@ -15,6 +17,7 @@ $(document).ready(() => {
     let lastName = $("#lastName");
     let wage = $("#wage");
     let department = $("#department");
+    let hide = $("#hide");
 
     $("#submit").on("click",() => {
         event.preventDefault();
@@ -29,7 +32,9 @@ $(document).ready(() => {
             updateEmployee(newEmployee);
           }
           else {
+            hide.hide()
             addEmployee(newEmployee);
+            myFunction()
           }
     });
 
@@ -60,4 +65,27 @@ function getEmployeeInfo(id) {
         console.log("success");
       });
   }
+
+function myFunction() {
+  myVar = setTimeout(showPage, 2000);
+  document.getElementById("loader").style.display = "inline";
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "inline";
+  // document.getElementById("myDiv").style.display = "inline";
+  window.location.href = "/"
+}
+
+
+
+
+
+
+
+
+
+
+
+
 })
