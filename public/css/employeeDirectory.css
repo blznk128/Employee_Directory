@@ -1,5 +1,22 @@
 .edit, .delete {
     float: right;
-    margin: 5px;
-    
+    margin: 5px; 
+}
+
+#tableContainer {
+    width: 75%;
+    margin-left: 11%;
+    padding-top: 5%;
+}
+
+h1 {
+    text-align: center;
+}
+
+tr {
+    color: white;
+}
+
+body {
+    background: radial-gradient(black, transparent);
 }

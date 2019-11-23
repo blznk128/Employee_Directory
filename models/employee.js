@@ -15,9 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         department: {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
         // hire_Date: {
-        //     type: DataTypes.TEXT
+        //     type: DataTypes.DATE,
+        //     allowNull: true
         // }
     });
 
