@@ -20,3 +20,20 @@ tr {
 body {
     background: radial-gradient(black, transparent);
 }
+
+.row {
+    text-align: center;
+    padding-top: 45px;
+}
+
+#dropdown1 {
+    background:  radial-gradient(black, transparent);
+}
+
+#lastName, #wage, #department {
+    color: white;
+}
+
+#lookUp {
+    color: white;
+  }
