@@ -2,9 +2,14 @@ let person;
 let getEmployees = [];
 let employeeContainer = $("#here");
 let lookUp = $("#lookUp");
+let directions = $("#instructions");
 
 $(document).on("click", "button.delete", deleteEmployee);
 $(document).on("click", "button.edit", editEmployee);
+
+lookUp.hide();
+directions.hide();
+
 
 $("#addEmployee").on("click", () => {
     event.preventDefault();
@@ -26,7 +31,7 @@ function showEmployees () {
         person = data;
         for (let i = 0; i < person.length; i++) {
             getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
-            person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+            person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "Edit" + "</button>" +
             "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
             
         }
@@ -121,6 +126,7 @@ function searchEmployee() {
   });
 }
 
+//function that looks up lastName when user types
 $("#lookUp").keyup(function() {
   let searchedEmployee = lookUp.val()
   getEmployees = []
@@ -136,7 +142,7 @@ $("#lookUp").keyup(function() {
   });
 })
 
-
+//function that brings up all users if field is empty
 $("#lookUp").keyup(function() {
   if (lookUp.val() === "") {
     getEmployees = []
@@ -146,12 +152,8 @@ $("#lookUp").keyup(function() {
 })
 
 $("#search").on("click", () => {
-  if (lookUp.val() === "") {
-    employeeContainer.empty();
-    employeeContainer.append("type something foo")
-  } else {
-    searchEmployee()
-  }
+  lookUp.toggle();
+  directions.toggle()
 })
 
 // sort by functions

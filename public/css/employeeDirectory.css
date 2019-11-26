@@ -1,6 +1,17 @@
 .edit, .delete {
     float: right;
     margin: 5px; 
+    background: none;
+}
+
+.edit {
+    border: none;
+    color: blue;
+}
+
+.delete {
+    color: red;
+    font-size: 20px;
 }
 
 #tableContainer {
@@ -36,4 +47,9 @@ body {
 
 #lookUp {
     color: white;
-  }
+    border-bottom: 1px solid yellow!important;
+}
+
+#instructions {
+    text-align: center;
+}
