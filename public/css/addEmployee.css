@@ -53,3 +53,30 @@
     display: none;
     text-align: center;
   }
+
+  h1 {
+    text-align: center;
+  }
+
+  #hide {
+    width: 75%;
+    margin-left: 11%;
+  }
+
+  #entryForm {
+    padding-top: 5%;
+  }
+
+  body {
+    background: radial-gradient(black, transparent);
+  }
+
+  #firstName, #lastName, #wage, #department {
+    color: white;
+    border-bottom: 1px solid yellow!important;
+  }
+
+  .input-field>label {
+    color: red;
+  }
+  
