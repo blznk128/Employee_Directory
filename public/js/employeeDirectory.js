@@ -10,35 +10,33 @@ $(document).on("click", "button.edit", editEmployee);
 lookUp.hide();
 directions.hide();
 
-
 $("#addEmployee").on("click", () => {
     event.preventDefault();
     window.location.href = "/addEmployee";
 });
 
 function deletePost(id) {
-    $.ajax({
-      method: "DELETE",
-      url: "/api/employees/" + id
-    })
-      .then(function() {
-        console.log(id)
-      });
-  }
+  $.ajax({
+    method: "DELETE",
+    url: "/api/employees/" + id
+  })
+    .then(function() {
+      console.log(id)
+    });
+}
 
 function showEmployees () {
-    $.get("/api/employees", (data) => {
-        person = data;
-        for (let i = 0; i < person.length; i++) {
-            getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
-            person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "Edit" + "</button>" +
-            "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
-            
-        }
-        employeeContainer.append(getEmployees)
+  $.get("/api/employees", (data) => {
+    person = data;
+      for (let i = 0; i < person.length; i++) {
+        getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
+        person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "Edit" + "</button>" +
+        "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )   
+      }
+    employeeContainer.append(getEmployees)
     })
-    
 };
+
 showEmployees()
 
 //sorting, gonna change it to switch statements after it actually works
@@ -46,12 +44,11 @@ function employeeLastName () {
   employeeContainer.empty()
   getEmployees = []
   $.get("/api/lastName", (data) => {
-      person = data;
-      for (let i = 0; i < person.length; i++) {
-          getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
-          person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
-          "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
-          
+    person = data;
+    for (let i = 0; i < person.length; i++) {
+      getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
+      person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+      "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )  
       }
       employeeContainer.append(getEmployees)
   })
@@ -63,10 +60,9 @@ function employeeWage () {
   $.get("/api/wage", (data) => {
       person = data;
       for (let i = 0; i < person.length; i++) {
-          getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
-          person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
-          "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
-          
+        getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
+        person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+        "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
       }
       employeeContainer.append(getEmployees)
   })
@@ -78,10 +74,9 @@ function employeeDepartment () {
   $.get("/api/department", (data) => {
       person = data;
       for (let i = 0; i < person.length; i++) {
-          getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
-          person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
-          "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" )
-          
+        getEmployees.push("<tr id = " + person[i].id + ">" + "<td>" + person[i].first_Name + "</td>" + "<td>" + person[i].last_Name + "</td>" + "<td>" + 
+        person[i].wage + "</td>" + "<td>" + person[i].department + "<button class = 'edit'>" + "edit" + "</button>" +
+        "<button class = 'delete'>" + " X" + "</button>" + "</td>" + "</tr>" ) 
       }
       employeeContainer.append(getEmployees)
   })
@@ -92,7 +87,7 @@ function deleteEmployee(){
     let rowId = $(this).parent("td").parent("tr").attr('id');
     $(this).closest("tr").remove();
     $.ajax({
-       method:"DELETE",
+      method:"DELETE",
       url:"/api/employees/" + rowId
     })
 };
@@ -108,7 +103,6 @@ function editEmployee() {
 
 //code for drop down menu to sort data
 $('.dropdown-trigger').dropdown();
-
 
 function searchEmployee() {
   let searchedEmployee = lookUp.val()
